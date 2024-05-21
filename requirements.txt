@@ -1,6 +1,6 @@
 langchain
 google-generativeai
-faiss
+faiss-cpu
 langchain-google-genai
 pypdfium2
 streamlit
