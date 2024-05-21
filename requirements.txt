@@ -1,6 +1,6 @@
 langchain
 google-generativeai
-chromadb
+faiss
 langchain-google-genai
 pypdfium2
 streamlit
