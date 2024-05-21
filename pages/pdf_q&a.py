@@ -82,7 +82,7 @@ def init_model(pdf):
     embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001", task_type='retrieval_document', google_api_key=google_api_key)
 
     # vectorstores
-    index = faiss.from_documents(documents=pdf,
+    index = FAISS.from_documents(documents=pdf,
                                 embedding=embeddings)
 
 
