@@ -5,7 +5,7 @@ import tempfile
 from langchain.text_splitter import RecursiveCharacterTextSplitter, CharacterTextSplitter
 from langchain.document_loaders import PyPDFium2Loader
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
-from langchain_community.vectorstores import faiss
+from langchain_community.vectorstores import FAISS
 from langchain_google_genai import  GoogleGenerativeAI, ChatGoogleGenerativeAI, HarmBlockThreshold, HarmCategory
 from langchain.chains.question_answering import load_qa_chain
 import textwrap
