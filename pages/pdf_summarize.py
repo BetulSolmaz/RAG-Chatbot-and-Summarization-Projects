@@ -128,6 +128,7 @@ options = st.radio(
 btn = st.button("Get Summary")
 if btn:
     if options=="Summary of Certain Pages":
+       st.write(pdf) 
        result = stuff_model(pdf)
        st.subheader("Summary : ")
        st.text(result) 
