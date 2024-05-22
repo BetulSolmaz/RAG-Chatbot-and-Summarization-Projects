@@ -73,9 +73,10 @@ def get_pdf(file_path):
         st.error(f"Error in reading the file: {e}")
         return None
         
-llm = ChatGoogleGenerativeAI(temperature=0, model='gemini-1.5-pro-latest',max_tokens=1024, google_api_key=google_api_key)
+
 
 def stuff_model(pdf):
+    llm = ChatGoogleGenerativeAI(temperature=0, model='gemini-1.5-pro-latest',max_tokens=1024, google_api_key=google_api_key)
     chain = load_summarize_chain(
     llm,
     chain_type='stuff',
@@ -88,6 +89,7 @@ def stuff_model(pdf):
 
 
 def map_reduce_model(pdf):
+    llm = ChatGoogleGenerativeAI(temperature=0, model='gemini-1.5-pro-latest',max_tokens=1024, google_api_key=google_api_key)
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=10000, chunk_overlap=0)
     final_combine_prompt='''
      Provide a final summary of the entire text with at least 1000 words.
@@ -107,6 +109,7 @@ def map_reduce_model(pdf):
     print(wrapped_text)
 
 def refine_model(pdf):
+    llm = ChatGoogleGenerativeAI(temperature=0, model='gemini-1.5-pro-latest',max_tokens=1024, google_api_key=google_api_key)
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=10000, chunk_overlap=0)
     chunks = text_splitter.split_documents(pdf)
     chain = load_summarize_chain(llm,
