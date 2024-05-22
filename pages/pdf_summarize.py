@@ -134,8 +134,8 @@ btn = st.button("Get Summary")
 if btn:
     if options=="Summary of Certain Pages":
        result = stuff_model(pdf, google_api_key)
-        st.subheader("Summary : ")
-        st.text(result) 
+       st.subheader("Summary : ")
+       st.text(result) 
 
     elif options=='Short Summary of the Entire Document':
         result = map_reduce_model(pdf,google_api_key )
