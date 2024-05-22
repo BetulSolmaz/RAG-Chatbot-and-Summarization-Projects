@@ -74,6 +74,7 @@ def get_pdf(file_path):
         return None
         
 llm = ChatGoogleGenerativeAI(temperature=0, model='gemini-1.5-pro-latest',max_tokens=1024, google_api_key=google_api_key)
+
 def stuff_model(pdf):
     chain = load_summarize_chain(
     llm,
@@ -129,9 +130,8 @@ options = st.radio(
 btn = st.button("Get Summary")
 if btn:
     if options=="Summary of Certain Pages":
-       result = stuff_model(pdf)
        st.subheader("Summary : ")
-       st.text(result) 
+       st.text(stuff_model(pdf)) 
 
     elif options=='Short Summary of the Entire Document':
         result = map_reduce_model(pdf)
