@@ -7,6 +7,7 @@ from langchain.document_loaders import PyPDFium2Loader
 from langchain_google_genai import  GoogleGenerativeAI, ChatGoogleGenerativeAI, HarmBlockThreshold, HarmCategory
 from langchain.chains.summarize import load_summarize_chain
 from langchain_core.prompts import PromptTemplate
+from langchain import PromptTemplate
 import textwrap 
 import warnings;
 warnings.filterwarnings('ignore')
