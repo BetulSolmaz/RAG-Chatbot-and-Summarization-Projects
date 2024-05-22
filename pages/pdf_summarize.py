@@ -75,8 +75,8 @@ def get_pdf(file_path):
         
 
 
-def stuff_model(pdf):
-    llm = ChatGoogleGenerativeAI(temperature=0, model='gemini-1.5-pro-latest',max_tokens=1024, google_api_key=google_api_key)
+def stuff_model(pdf, api_key):
+    llm = ChatGoogleGenerativeAI(temperature=0, model='gemini-1.5-pro-latest',max_tokens=1024, google_api_key=api_key)
     chain = load_summarize_chain(
     llm,
     chain_type='stuff',
@@ -88,8 +88,8 @@ def stuff_model(pdf):
     print(wrapped_text)
 
 
-def map_reduce_model(pdf):
-    llm = ChatGoogleGenerativeAI(temperature=0, model='gemini-1.5-pro-latest',max_tokens=1024, google_api_key=google_api_key)
+def map_reduce_model(pdf, api_key):
+    llm = ChatGoogleGenerativeAI(temperature=0, model='gemini-1.5-pro-latest',max_tokens=1024, google_api_key=api_key)
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=10000, chunk_overlap=0)
     final_combine_prompt='''
      Provide a final summary of the entire text with at least 1000 words.
@@ -108,8 +108,8 @@ def map_reduce_model(pdf):
     wrapped_text = textwrap.fill(output_summary, width=100)
     print(wrapped_text)
 
-def refine_model(pdf):
-    llm = ChatGoogleGenerativeAI(temperature=0, model='gemini-1.5-pro-latest',max_tokens=1024, google_api_key=google_api_key)
+def refine_model(pdf, api_key):
+    llm = ChatGoogleGenerativeAI(temperature=0, model='gemini-1.5-pro-latest',max_tokens=1024, google_api_key=api_key)
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=10000, chunk_overlap=0)
     chunks = text_splitter.split_documents(pdf)
     chain = load_summarize_chain(llm,
@@ -133,16 +133,17 @@ options = st.radio(
 btn = st.button("Get Summary")
 if btn:
     if options=="Summary of Certain Pages":
-       st.subheader("Summary : ")
-       st.text(stuff_model(pdf)) 
+       result = stuff_model(pdf, google_api_key)
+        st.subheader("Summary : ")
+        st.text(result) 
 
     elif options=='Short Summary of the Entire Document':
-        result = map_reduce_model(pdf)
+        result = map_reduce_model(pdf,google_api_key )
         st.subheader("Summary : ")
         st.text(result) 
 
     elif options== "Detailed Summary of the Entire Document":
-        result= refine_model(pdf)
+        result= refine_model(pdf, google_api_key)
         st.subheader("Summary : ")
         st.text(result) 
 
