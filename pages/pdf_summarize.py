@@ -72,7 +72,7 @@ def get_pdf(file_path):
     except Exception as e:
         st.error(f"Error in reading the file: {e}")
         return None
-
+llm= None
 def stuff_model(pdf):
     global llm
     llm = ChatGoogleGenerativeAI(temperature=0, model='gemini-1.5-pro-latest',max_tokens=1024, google_api_key=google_api_key)
