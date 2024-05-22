@@ -129,13 +129,18 @@ btn = st.button("Get Summary")
 if btn:
     if options=="Summary of Certain Pages":
        result = stuff_model(pdf)
+       st.subheader("Summary : ")
+        st.text(result) 
 
     elif options=='Short Summary of the Entire Document':
-        result = map_reduce_model(pdf) 
+        result = map_reduce_model(pdf)
+        st.subheader("Summary : ")
+        st.text(result) 
 
     elif options== "Detailed Summary of the Entire Document":
-        result= refine_model(pdf)   
-
-
+        result= refine_model(pdf)
         st.subheader("Summary : ")
-        st.write(result)
+        st.text(result) 
+
+
+     
