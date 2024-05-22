@@ -24,10 +24,10 @@ st.write("----")
 
 #api key
 with st.sidebar:
-    google_api_key2 = st.text_input("Google API Key", key="file_qa_api_key", type="password")
+    google_api_key = st.text_input("Google API Key", key="file_qa_api_key", type="password")
 
-if google_api_key2:
-    ggi.configure(api_key=google_api_key2)
+if google_api_key:
+    ggi.configure(api_key=google_api_key)
     st.success("Google API key has been successfully set!")
 else:
     st.error("Please enter a valid Google API key.")
@@ -76,7 +76,7 @@ def get_pdf(file_path):
 
 
 def stuff_model(pdf):
-    llm = ChatGoogleGenerativeAI(temperature=0, model='gemini-1.5-pro-latest',max_tokens=1024, google_api_key=google_api_key2)
+    llm = ChatGoogleGenerativeAI(temperature=0, model='gemini-1.5-pro-latest',max_tokens=1024, google_api_key='google_api_key')
     chain = load_summarize_chain(
     llm,
     chain_type='stuff',
@@ -89,7 +89,7 @@ def stuff_model(pdf):
 
 
 def map_reduce_model(pdf):
-    llm = ChatGoogleGenerativeAI(temperature=0, model='gemini-1.5-pro-latest',max_tokens=1024, google_api_key=google_api_key2)
+    llm = ChatGoogleGenerativeAI(temperature=0, model='gemini-1.5-pro-latest',max_tokens=1024, google_api_key='google_api_key')
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=10000, chunk_overlap=0)
     final_combine_prompt='''
      Provide a final summary of the entire text with at least 1000 words.
@@ -109,7 +109,7 @@ def map_reduce_model(pdf):
     print(wrapped_text)
 
 def refine_model(pdf):
-    llm = ChatGoogleGenerativeAI(temperature=0, model='gemini-1.5-pro-latest',max_tokens=1024, google_api_key=google_api_key2)
+    llm = ChatGoogleGenerativeAI(temperature=0, model='gemini-1.5-pro-latest',max_tokens=1024, google_api_key='google_api_key')
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=10000, chunk_overlap=0)
     chunks = text_splitter.split_documents(pdf)
     chain = load_summarize_chain(llm,
